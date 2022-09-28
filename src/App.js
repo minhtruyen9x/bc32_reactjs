@@ -1,8 +1,6 @@
-import BaiTapThucHanhLayout from "./1_BaiTap/Components/BaiTapThucHanhLayout";
-
 function App() {
   return (
-    <BaiTapThucHanhLayout />
+    <div></div>
   );
 }
 
