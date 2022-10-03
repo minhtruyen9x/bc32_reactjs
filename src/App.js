@@ -1,6 +1,8 @@
+import BaiTapThuKinh from "./components/BaiTapThuKinh";
+
 function App() {
   return (
-    <div></div>
+    <BaiTapThuKinh />
   );
 }
 
