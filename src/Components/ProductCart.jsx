@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import { Button, Modal, Image, InputNumber, Table, Space, Typography } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 const { Text } = Typography
@@ -6,11 +6,12 @@ const { Text } = Typography
 const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDeleteItem }) => {
     console.log("cart")
 
+    const [currentPage, setCurrentPage] = useState(1)
     const columns = [
         {
             title: 'No.',
             dataIndex: 'id',
-            render: (id, record, index) => <span>{index + 1}</span>
+            render: (id, record, index) => <span>{(currentPage - 1) * 3 + index + 1}</span>
         },
         {
             title: 'Image',
@@ -21,7 +22,7 @@ const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDel
             title: 'Name',
             dataIndex: 'name',
             sorter: (a, b) => a.name - b.name,
-            render: (name) => <Text ellipsis={true} >{name}</Text>,
+            render: (name) => <Text ellipsis={{ tooltip: name }} >{name}</Text>,
         },
         {
             title: 'Price',
@@ -52,13 +53,27 @@ const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDel
         },
     ]
     return (
-        <Modal title="Giỏ hàng" open={isCartOpen} onOk={onToggleModal} onCancel={onToggleModal} width="80%">
+        <Modal
+            title="Giỏ hàng"
+            open={isCartOpen}
+            onOk={onToggleModal}
+            onCancel={onToggleModal}
+            width="80%"
+            centered
+        >
             <Table
                 columns={columns}
                 rowKey="id"
-                dataSource={carts}
-                pagination={false}
                 bordered
+                dataSource={carts}
+                pagination={{
+                    pageSize: 3,
+                    onChange(current) {
+                        console.log(current)
+                        setCurrentPage(current);
+                    }
+                }}
+                scroll={{ x: "100%" }}
                 summary={(carts) => {
                     let totalPrice = carts.reduce((total, item) => {
                         return total + item.price * item.quantity
@@ -75,8 +90,7 @@ const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDel
                             </Table.Summary.Cell>
                         </Table.Summary.Row>
                     );
-                }}
-            >
+                }}>
             </Table>
         </Modal>
     )
