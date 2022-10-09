@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 import { Button, Modal, Image, InputNumber, Table, Space, Typography } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-const { Text } = Typography
+const { Text, Title } = Typography
 
 const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDeleteItem }) => {
     console.log("cart")
@@ -74,23 +74,11 @@ const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDel
                     }
                 }}
                 scroll={{ x: "100%" }}
-                summary={(carts) => {
-                    let totalPrice = carts.reduce((total, item) => {
+                footer={() => (
+                    <Title level={3}>Total Purchase: {carts.reduce((total, item) => {
                         return total + item.price * item.quantity
-                    }, 0)
-                    return (
-                        <Table.Summary.Row>
-                            {console.log("table")}
-                            <Table.Summary.Cell index={0} colSpan={4}></Table.Summary.Cell>
-                            <Table.Summary.Cell index={1}>
-                                <Text type="danger">Total: </Text>
-                            </Table.Summary.Cell>
-                            <Table.Summary.Cell index={2} colSpan={2}>
-                                <Text>{totalPrice} $</Text>
-                            </Table.Summary.Cell>
-                        </Table.Summary.Row>
-                    );
-                }}>
+                    }, 0)} $</Title>
+                )}>
             </Table>
         </Modal>
     )
