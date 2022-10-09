@@ -1,6 +1,8 @@
+import ShoesStore from "./Components/ShoesStore";
+
 function App() {
   return (
-    <div></div>
+    <ShoesStore />
   );
 }
 
