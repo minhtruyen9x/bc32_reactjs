@@ -6,6 +6,8 @@ const { Text, Title } = Typography
 const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDeleteItem }) => {
     console.log("cart")
 
+    // Thêm state để lưu trữ giá trị page hiện tại của Table
+    // dùng để đánh giá trị index mỗi khi thay đổi trang
     const [currentPage, setCurrentPage] = useState(1)
     const columns = [
         {
@@ -75,9 +77,12 @@ const ProductCart = ({ carts, isCartOpen, onToggleModal, onChangeQuantity, onDel
                 }}
                 scroll={{ x: "100%" }}
                 footer={() => (
-                    <Title level={3}>Total Purchase: {carts.reduce((total, item) => {
-                        return total + item.price * item.quantity
-                    }, 0)} $</Title>
+                    <Title level={3}>
+                        Total Purchase: {carts.reduce((total, item) => {
+                            return total + item.price * item.quantity
+                        }, 0)} $
+                        {console.log("table")}
+                    </Title>
                 )}>
             </Table>
         </Modal>

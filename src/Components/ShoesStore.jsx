@@ -10,11 +10,12 @@ import data from "../data/shoes.json"
 export default class ShoesStore extends Component {
     state = {
         isModalOpen: false,
-        previewItem: data[0],
         isCartOpen: false,
+        previewItem: data[0],
         carts: []
     }
 
+    // hàm handle đóng mở modal preview chi tiết sản phẩm
     toggleModalPreview = (item = null) => {
         this.setState(
             {
@@ -23,6 +24,7 @@ export default class ShoesStore extends Component {
             })
     }
 
+    // hàm handle đóng mở modal carts chứa các sản phẩm giỏ hàng
     toggleModalCart = () => {
         this.setState(
             {
@@ -30,7 +32,11 @@ export default class ShoesStore extends Component {
             })
     }
 
+    // hàm thêm sản phẩm vào giỏ hàng
     handleAddToCart = (item) => {
+        // kiểm tra xem trong giỏ hàng đã có sản phẩm này chưa
+        // Nếu có thì tăng số lượng
+        // Nếu không có thì thêm mới vào mảng giỏ hàng
         const cartItem = this.state.carts.find(cartItem => item.id === cartItem.id)
         if (cartItem) {
             cartItem.quantity++
@@ -42,10 +48,15 @@ export default class ShoesStore extends Component {
         this.setState({ carts: [...this.state.carts, newCartItem] })
     }
 
+    // hàm thay đổi số lượng sản phẩm trong giỏ hàng
     handleChangeQuantity = (id, quantity) => {
+        // tìm sản phẩm hiện tại muôn thay đổi số lượng trong gỉ hàng
         const cartItem = this.state.carts.find(cartItem => id === cartItem.id)
         if (!cartItem) return
 
+        // tạo một biến lưu trữ số lượng sau khi tăng giảm
+        // nếu số lượng hợp lệ thì gán lại vào cho sản phẩm giỏ hàng
+        // nếu số lượng không hợp lệ thì return, không thay đổi gì cả
         const currentQuantity = cartItem.quantity + quantity
         if (currentQuantity <= 0) {
             return
@@ -55,6 +66,7 @@ export default class ShoesStore extends Component {
         this.setState({ carts: [...this.state.carts] })
     }
 
+    // hàm xóa sản phẩm khỏi giỏ hàng
     handleDeleteItem = (id) => {
         this.setState({ carts: this.state.carts.filter(item => item.id !== id) })
     }
