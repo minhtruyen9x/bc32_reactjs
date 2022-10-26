@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    font-size: 1.6rem;
+}
+
+.title {
+    color: var(--white-color);
+}
+
+.required {
+    color: red;
+    line-height: 1;
+    margin-left: 4px;
+}
+
+.input {
+    background-color: transparent;
+    outline: none;
+    border: 1px solid var(--white-color);
+    padding: 8px 12px;
+    color: var(--white-color);
+    &:focus{
+        border-color:var(--primary-color) ;
+    }
+}

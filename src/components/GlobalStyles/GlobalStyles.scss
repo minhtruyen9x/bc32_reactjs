@@ -1,0 +1,37 @@
+:root {
+    --white-color: white;
+    --primary-color: #ff9800;
+
+    --empty-color: white;
+    --selected-color: green;
+    --reserved-color: red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    font-size: 1.6rem;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.row+.row {
+    margin-top: 4px;
+}

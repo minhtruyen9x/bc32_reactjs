@@ -1,0 +1,24 @@
+.seat {
+    --box-color: black;
+    margin: 0 auto;
+    width: min(32px, 100%);
+    height: 24px;
+    border-radius: 5px;
+    border: 3px solid #ff9800;
+    box-shadow: inset 0px 2px 3px 0px rgb(0 0 0 / 30%), 0px 1px 0px 0px rgb(255 255 255 / 80%);
+    background-color: var(--box-color);
+    cursor: pointer;
+
+    &.empty {
+        --box-color: var(--empty-color);
+    }
+
+    &.selected {
+        --box-color: var(--selected-color);
+    }
+
+    &.reserved {
+        --box-color: var(--reserved-color);
+        pointer-events: none;
+    }
+}

@@ -1,6 +1,11 @@
+import MovieSeatSelection from "./components/MovieSeatSelection";
+import GlobalStyles from "./components/GlobalStyles";
+
 function App() {
   return (
-    <div></div>
+    <GlobalStyles>
+      <MovieSeatSelection />
+    </GlobalStyles>
   );
 }
 
