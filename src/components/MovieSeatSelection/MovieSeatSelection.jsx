@@ -152,6 +152,7 @@ const MovieSeatSelection = () => {
                                 <th>Name</th>
                                 <th>Number of Seats</th>
                                 <th>Seats</th>
+                                <th>Total price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -160,6 +161,11 @@ const MovieSeatSelection = () => {
                                     <td>{order.name}</td>
                                     <td>{order.seats.length}</td>
                                     <td>{order.seats.map(seat => seat.soGhe).join(" ,")}</td>
+                                    <td>
+                                        {order.seats
+                                            .reduce((total, seat) => total + seat.gia, 0)
+                                            .toLocaleString("vn")} VND
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
